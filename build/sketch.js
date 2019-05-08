@@ -132,15 +132,6 @@ function setupBossShip()
     }
 
     bossShipSprite.explode = explode;
-/*
-    bossShipSprite.death = function()
-    {
-        if(bossShipSprite.health <= 0)
-        {
-            bossShipSprite.visible = false;
-        }
-    }*/
-
     bossShipSprite.shakeCount = 0;
     bossShipSprite.maxShakes = 20;
     bossShipSprite.shakeTimer = new Date();
@@ -264,6 +255,8 @@ function laserHitPlayer(laser, playerShip)
     if(playerShip.overlapPixel(laser.position.x-laser.width*laser.scale/2, laser.position.y+laser.height*laser.scale/2) ||
     playerShip.overlapPixel(laser.position.x+laser.width*laser.scale/2, laser.position.y+laser.height*laser.scale/2))
     {
+        createFlashSprite(laser.position.x, laser.position.y);
+
         if(bossShipSprite.health-20 >= 0 && !gameOver)
         {
             playerShipSprite.health -= 20;
